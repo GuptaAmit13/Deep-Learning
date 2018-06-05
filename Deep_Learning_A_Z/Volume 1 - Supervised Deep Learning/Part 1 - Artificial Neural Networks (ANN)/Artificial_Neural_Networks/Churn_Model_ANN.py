@@ -123,13 +123,15 @@ def build_classifier():
 classifier = KerasClassifier(build_fn = build_classifier,epochs=150,batch_size=10)
 
 #Applying K-Fold Cross Validation Method for Better Accuracy. In this case, K=10
+# For Windows n_jobs = 1 is working currently. For linux one can set n_jobs=-1 for all CPU'ss
 accuracies = cross_val_score(estimator=classifier,X = X_train, y = Y_train, cv = 10,n_jobs=1)
 mean = accuracies.mean()
 variance = accuracies.std()
 
 #%%
 #Improving the ANN
-
+#Before you complie, remember it will take few hours to compile.Plan Accordingly. 
+#Reduce the parameters in dictionary to reduce compile time.
 def build_classifier(optimizer):
     #Creating ANN Model
     #Initializaing ANN
@@ -151,8 +153,8 @@ from sklearn.model_selection import GridSearchCV
 classifier = KerasClassifier(build_fn = build_classifier)
 
 #Hyper Parameter Dictionary
-parameters = {'batch_size':[20,22,24,26,28,30,32,34,36,38,40,42,44,46],
-              'epochs':[100,500,1000],
+parameters = {'batch_size':[32],
+              'epochs':[500,1000],
               'optimizer':['adam','rmsprop']} 
 
 #Using GridsearchCV
