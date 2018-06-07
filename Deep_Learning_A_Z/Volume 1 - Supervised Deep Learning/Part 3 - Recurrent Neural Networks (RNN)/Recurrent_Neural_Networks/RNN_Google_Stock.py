@@ -73,10 +73,10 @@ regressor.add(Dense(units=1))
 #Compiling RNN (Wil take Few Minutes)
 #%%
 #Compiling
-regressor.compile(optimizer='adam',loss='mean_squared_error')
+regressor.compile(optimizer='rmsprop',loss='mean_squared_error')
 
 #Fitting Data to RNN Model
-regressor.fit(X_train,y_train,epochs=125,batch_size=32)
+regressor.fit(X_train,y_train,epochs=125,batch_size=64)
 
 
 #Predicting Price with RNN
